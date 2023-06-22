@@ -5,8 +5,7 @@ export const Game = () => {
     const [history, setHistory] = useState([Array(9).fill(null)])
     const [currentMove, setCuerrntMove] = useState(0)
     const currentSquares = history[currentMove]
-    const xIsNext = currentSquares % 2 === 0;
-    console.log('currentsqaure', currentSquares)
+    const xIsNext = currentMove % 2 === 0;
 
     function handlePlay(nextSquares) {
         const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
@@ -16,11 +15,12 @@ export const Game = () => {
 
     function jumpTo(nextMove) {
         setCuerrntMove(nextMove)
+        setHistory(history.slice(0, nextMove + 1))
     }
 
     const moves = history.map((squares, move) => {
         let description;
-        if (move > 0) {
+        if (move < 0) {
             description = 'Go to move #' + move;
         } else {
             description = 'Go to game start';

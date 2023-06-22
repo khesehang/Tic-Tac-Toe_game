@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Square from './Square'
 
 const Board = ({ xIsNext, squares, onPlay }) => {
-    console.log('square ', squares)
 
     function handleClick(i) {
         if (squares[i] || calculateWinner(squares)) {
