@@ -8,4 +8,6 @@ margin: 0;
 box-sizing: border-box;
 align-items: center;
 text-align: center;
+width:50px;
+height: 50px;
 }

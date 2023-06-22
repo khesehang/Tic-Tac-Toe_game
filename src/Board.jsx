@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import Square from './Square'
 
-const Board = () => {
-    const [xIsNext, setXIsNext] = useState(true)
-    const [squares, setSquares] = useState(Array(9).fill(null));
+const Board = ({ xIsNext, squares, onPlay }) => {
     console.log('square ', squares)
 
     function handleClick(i) {
@@ -16,13 +14,12 @@ const Board = () => {
         } else {
             nextSquares[i] = 'O';
         }
-        setSquares(nextSquares)
-        setXIsNext(!xIsNext)
+        onPlay(nextSquares)
     }
 
     const winner = calculateWinner(squares)
     let status;
-    if(winner) {
+    if (winner) {
         status = 'Winner: ' + winner
     } else {
         status = 'Next Player: ' + (xIsNext ? 'X' : 'O')
@@ -51,7 +48,7 @@ const Board = () => {
     return (
         <div>
             <div className='board-row'>
-            <div>{status}</div>
+                <div>{status}</div>
                 <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
                 <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
                 <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
